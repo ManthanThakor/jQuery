@@ -1,0 +1,121 @@
+body {
+  background: #141414;
+  color: #eee;
+}
+.flix-parents {
+  overflow: hidden;
+}
+.flickfeed {
+  opacity: 0;
+}
+.titler img {
+  width: 140px;
+}
+.slick-track {
+  display: flex !important;
+}
+.slick-slide {
+  margin: 1px;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0.3s;
+}
+.slick-slide:hover {
+  transform: scale(1.5);
+  z-index: 3;
+}
+button.slick-arrow {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5) !important;
+  width: 2.5vw;
+  border: none;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+button.slick-arrow.slick-next {
+  right: 0;
+  /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z'/%3E%3C/svg%3E");*/
+}
+button.slick-arrow.slick-prev {
+  left: 0;
+  /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z'/%3E%3C/svg%3E");*/
+}
+button.slick-disabled {
+  opacity: 0 !important;
+}
+.slick-initialized {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+.flickfeed .card {
+  position: relative;
+  background-size: cover !important; /* Ensure it covers fully */
+  background-position: center !important; /* Keep it centered */
+  background-repeat: no-repeat !important; /* Don't repeat the image */
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  border: none;
+  height: 100%; /* Ensure height stays */
+  width: 100%; /* Ensure width stays */
+}
+.back {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  transition: top 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card:hover .back {
+  top: 1px;
+}
+button.more {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  height: 10%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: -1.5rem;
+}
+
+.prevslides {
+  transform: translateX(-3.95vw);
+}
+.nextslides {
+  transform: translateX(3.95vw);
+}
+.furthernextslides {
+  transform: translateX(7.9vw);
+}
+.furtherprevslides {
+  transform: translateX(-7.9vw);
+}
+.firster {
+  transform-origin: center left !important;
+}
+.laster {
+  transform-origin: center right !important;
+}
+
+.video-list-slider {
+  background: 0 0;
+  border: none;
+  overflow: visible;
+}
+.slick-list {
+  overflow: visible;
+}
+.py-5 {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+.-my-4 {
+  margin-top: -3.5rem !important;
+  margin-bottom: -3.5rem !important;
+}

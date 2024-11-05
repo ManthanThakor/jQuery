@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery Practice</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h2>This is a heading</h2>
+    <p>This is a <span class="span">sdsd</span> paragraph.</p>
+    <p id="test">This is another paragraph.</p>
+    <button>Click me</button>
+    <p id="p1">This is a paragraph.</p>
+    Name: <input type="text" name="fullname" /><br />
+    Email: <input type="text" name="email" />
+
+    <div class="events">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa esse
+        provident sunt ullam atque consequuntur. Reiciendis officiis velit harum
+        quod! Eligendi deleniti mollitia quibusdam fugit expedita. A recusandae
+        nulla quisquam!
+      </p>
+    </div>
+
+    <div class="events">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa esse
+        provident sunt ullam atque consequuntur. Reiciendis officiis velit harum
+        quod! Eligendi deleniti mollitia quibusdam fugit expedita. A recusandae
+        nulla quisquam!
+      </p>
+    </div>
+    <input type="text" id="inputField" placeholder="Type something here..." />
+    <div id="output"></div>
+
+    <p class="showOrHide">
+      If you click on the "Hide" button, I will disappear.
+    </p>
+    <button id="hide">Hide</button>
+    <button id="show">Show</button>
+
+    <script>
+      $(document).ready(function () {
+        console.log("jQuery is loaded");
+        let a = $(".span").html();
+        console.log(a);
+        $("button").contextmenu(function () {
+          $("#test").hide();
+        });
+        // alert("Hacker");
+
+        $("#p1").mouseleave(function () {
+          alert("Bye! You now leave p1!");
+        });
+        $("input").focus(function () {
+          $(this).css("background-color", "yellow");
+        });
+        $("input").blur(function () {
+          $(this).css("background-color", "");
+        });
+
+        $("p").on({
+          mouseenter: function () {
+            $(".span").css("background-color", "lightgray");
+          },
+          mouseleave: function () {
+            $(".span").css("background-color", "lightblue");
+          },
+          click: function () {
+            $(".span").css("background-color", "yellow");
+          },
+        });
+
+        $(".events").each(function () {
+          const self = $(this);
+
+          self.on("click", () => {
+            self.css("background-color", "green");
+          });
+
+          self.on("dblclick", () => {
+            self.css("background-color", "red");
+          });
+
+          self.on("contextmenu", () => {
+            self.css("background-color", "black");
+          });
+          self.on("mouseenter", () => {
+            self.css("background-color", "gray");
+          });
+          self.on("mouseleave", () => {
+            self.css("background-color", "purple");
+          });
+        });
+
+        $("#inputField").on("keydown", function (event) {
+          // Display the key code of the key pressed
+          $("#output").text(
+            "Key down: " + event.key + " (Code: " + event.keyCode + ")"
+          );
+        });
+
+        $("#inputField").on("keyup", function (event) {
+          // Display the key code of the key released
+          $("#output").text(
+            "Key up: " + event.key + " (Code: " + event.keyCode + ")"
+          );
+        });
+        $("#hide").click(function () {
+          $(".showOrHide").hide();
+        });
+        $("#show").click(function () {
+          $(".showOrHide").show();
+        });
+      });
+    </script>
+  </body>
+</html>

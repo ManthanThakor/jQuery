@@ -6,6 +6,59 @@
     <title>JQuery Practice</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+      }
+      html body {
+        overflow-x: hidden;
+      }
+      .card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .active {
+        border: 2px solid #007bff;
+        background-color: #e7f1ff;
+      }
+      .highlight {
+        background-color: yellow;
+      }
+
+      .animate-box {
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+      }
+      .boxx {
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        transition: all 0.3s ease;
+      }
+    </style>
   </head>
   <body>
     <h2>This is a heading</h2>
@@ -13,8 +66,12 @@
     <p id="test">This is another paragraph.</p>
     <button>Click me</button>
     <p id="p1">This is a paragraph.</p>
-    Name: <input type="text" name="fullname" /><br />
-    Email: <input type="text" name="email" />
+
+    Name: <input type="text" name="fullname" id="fullname" /><br />
+    Email: <input type="text" name="email" id="email" />
+    <button id="submit">Submit</button>
+
+    <p id="displayValues"></p>
 
     <div class="events">
       <p>
@@ -33,6 +90,7 @@
         nulla quisquam!
       </p>
     </div>
+
     <input type="text" id="inputField" placeholder="Type something here..." />
     <div id="output"></div>
 
@@ -42,22 +100,138 @@
     <button id="hide">Hide</button>
     <button id="show">Show</button>
 
+    <!-- New Card Section -->
+    <div class="card" id="card1">
+      <h3>Card 1</h3>
+      <p>This is some content in card 1.</p>
+      <button class="toggle">Toggle Active State</button>
+    </div>
+
+    <div class="card" id="card2">
+      <h3>Card 2</h3>
+      <p>This is some content in card 2.</p>
+      <button class="toggle">Toggle Active State</button>
+    </div>
+
+    <div class="card" id="card3">
+      <h3>Card 3</h3>
+      <p>This is some content in card 3.</p>
+      <button class="toggle">Toggle Active State</button>
+    </div>
+
+    <!-- Add/Remove Class Section -->
+    <div>
+      <h3>Add/Remove Class Example</h3>
+      <p id="classParagraph">This paragraph will change styles.</p>
+      <button id="addClass">Add Highlight Class</button>
+      <button id="removeClass">Remove Highlight Class</button>
+    </div>
+    <!-- Append/Prepend Section -->
+    <div>
+      <h3>Append/Prepend Example</h3>
+      <p id="appendParagraph">
+        This paragraph will have more content added to it.
+      </p>
+      <button id="appendButton">Append Text</button>
+      <button id="prependButton">Prepend Text</button>
+    </div>
+
+    <!-- After/Before Section -->
+    <div>
+      <h3>After/Before Example</h3>
+      <p id="beforeAfterParagraph">This is the original paragraph.</p>
+      <button id="afterButton">Add After</button>
+      <button id="beforeButton">Add Before</button>
+    </div>
+
+    <!-- Dimension Methods Section -->
+    <div
+      class="dimension-box"
+      style="
+        width: 200px;
+        height: 100px;
+        padding: 20px;
+        margin: 15px;
+        border: 1px solid #333;
+      "
+    >
+      Dimension Test Box
+    </div>
+
+    <button id="showDimensions">Show Dimensions</button>
+    <p id="dimensionOutput"></p>
+
+    <!-- Position and Offset Section -->
+    <div style="position: relative">
+      <div class="position-box">Position Test Box</div>
+    </div>
+
+    <button id="showPosition">Show Position</button>
+    <p id="positionOutput"></p>
+
+    <!-- Fade Effect Section -->
+    <h3>jQuery Effects - Fading</h3>
+    <button id="fadeInBtn">Fade In</button>
+    <button id="fadeOutBtn">Fade Out</button>
+    <button id="fadeToggleBtn">Fade Toggle</button>
+    <button id="fadeToBtn">Fade To 50%</button>
+
+    <div class="fade-box">Fade Effect Box</div>
+
+    <!-- Slide Effect Section -->
+    <h3>jQuery Effects - Sliding</h3>
+    <button id="slideDownBtn">Slide Down</button>
+    <button id="slideUpBtn">Slide Up</button>
+    <button id="slideToggleBtn">Slide Toggle</button>
+
+    <div class="slide-box">Slide Effect Box</div>
+
+    <!-- Animation Controls -->
+    <button id="animateWidth">Animate Width</button>
+    <button id="animateHeight">Animate Height</button>
+    <button id="animateBoth">Animate Both</button>
+    <button id="resetAnimation">Reset</button>
+    <button id="stopAnimation">Stop Animation</button>
+
+    <!-- Box to Animate -->
+    <div class="animate-box">Animate Me!</div>
+
+    <h2>jQuery - Chaining Example</h2>
+
+    <div class="boxx">Box</div>
+
+    <button id="chainEffects">Chain Effects</button>
     <script>
       $(document).ready(function () {
         console.log("jQuery is loaded");
+
+        $("#submit").click(function () {
+          const name = $("#fullname").val();
+          const email = $("#email").val();
+          $("#displayValues").text("Name: " + name + ", Email: " + email);
+          $("#fullname").val("John Doe");
+          $("#email").val("john.doe@example.com");
+        });
+
+        // Card functionality with toggle class
+        $(".toggle").click(function () {
+          $(this).parent().toggleClass("active");
+        });
+
         let a = $(".span").html();
         console.log(a);
         $("button").contextmenu(function () {
           $("#test").hide();
         });
-        // alert("Hacker");
 
-        $("#p1").mouseleave(function () {
+        $("#p1").click(function () {
           alert("Bye! You now leave p1!");
         });
+
         $("input").focus(function () {
           $(this).css("background-color", "yellow");
         });
+
         $("input").blur(function () {
           $(this).css("background-color", "");
         });
@@ -97,23 +271,166 @@
         });
 
         $("#inputField").on("keydown", function (event) {
-          // Display the key code of the key pressed
           $("#output").text(
             "Key down: " + event.key + " (Code: " + event.keyCode + ")"
           );
         });
 
         $("#inputField").on("keyup", function (event) {
-          // Display the key code of the key released
           $("#output").text(
             "Key up: " + event.key + " (Code: " + event.keyCode + ")"
           );
         });
+
         $("#hide").click(function () {
-          $(".showOrHide").hide();
+          $(".showOrHide").hide(1000);
         });
+
         $("#show").click(function () {
-          $(".showOrHide").show();
+          $(".showOrHide").show(1000);
+        });
+
+        // Add/Remove Class Example
+        $("#addClass").click(function () {
+          $("#classParagraph").addClass("highlight");
+        });
+
+        $("#removeClass").click(function () {
+          $("#classParagraph").removeClass("highlight");
+        });
+
+        // Append/Prepend Example
+        $("#appendButton").click(function () {
+          $("#appendParagraph").append(" Appended text.");
+        });
+
+        $("#prependButton").click(function () {
+          $("#appendParagraph").prepend("Prepended text. ");
+        });
+
+        // After/Before Example
+        $("#afterButton").click(function () {
+          $("#beforeAfterParagraph").after("<p>Paragraph added after.</p>");
+        });
+
+        $("#beforeButton").click(function () {
+          $("#beforeAfterParagraph").before("<p>Paragraph added before.</p>");
+        });
+
+        // Dimension Methods Example
+        $("#showDimensions").click(function () {
+          const width = $(".dimension-box").width();
+          const height = $(".dimension-box").height();
+          const innerWidth = $(".dimension-box").innerWidth();
+          const innerHeight = $(".dimension-box").innerHeight();
+          const outerWidth = $(".dimension-box").outerWidth();
+          const outerHeight = $(".dimension-box").outerHeight();
+
+          $("#dimensionOutput").html(
+            `<strong>Dimensions:</strong><br>
+            Width: ${width}px<br>
+            Height: ${height}px<br>
+            Inner Width: ${innerWidth}px<br>
+            Inner Height: ${innerHeight}px<br>
+            Outer Width: ${outerWidth}px<br>
+            Outer Height: ${outerHeight}px`
+          );
+        });
+
+        // Position and Offset Example
+        $("#showPosition").click(function () {
+          const position = $(".position-box").position();
+          const offset = $(".position-box").offset();
+
+          $("#positionOutput").html(
+            `<strong>Position and Offset:</strong><br>
+            Position (relative to parent):<br>
+            Left: ${position.left}px, Top: ${position.top}px<br><br>
+            Offset (relative to document):<br>
+            Left: ${offset.left}px, Top: ${offset.top}px`
+          );
+        });
+        // Fade Effects
+        $("#fadeInBtn").click(function () {
+          $(".fade-box").fadeIn("slow");
+        });
+
+        $("#fadeOutBtn").click(function () {
+          $(".fade-box").fadeOut("slow");
+        });
+
+        $("#fadeToggleBtn").click(function () {
+          $(".fade-box").fadeToggle("slow");
+        });
+
+        $("#fadeToBtn").click(function () {
+          $(".fade-box").fadeTo("slow", 0.5);
+        });
+        $(document).ready(function () {
+          console.log("jQuery is loaded");
+
+          // Slide Effects
+          $("#slideDownBtn").click(function () {
+            $(".slide-box").slideDown("slow");
+          });
+
+          $("#slideUpBtn").click(function () {
+            $(".slide-box").slideUp("slow");
+          });
+
+          $("#slideToggleBtn").click(function () {
+            $(".slide-box").slideToggle("slow");
+          });
+        });
+
+        // Animate width
+        $("#animateWidth").click(function () {
+          $(".animate-box").stop(true).animate({ width: "200px" }, "slow");
+        });
+
+        // Animate height
+        $("#animateHeight").click(function () {
+          $(".animate-box").stop(true).animate({ height: "200px" }, "slow");
+        });
+
+        // Animate both width and height, and change opacity
+        $("#animateBoth").click(function () {
+          $(".animate-box").stop(true).animate(
+            {
+              width: "200px",
+              height: "200px",
+              opacity: 0.5,
+            },
+            "slow"
+          );
+        });
+
+        // Reset animation to original dimensions
+        $("#resetAnimation").click(function () {
+          $(".animate-box").stop(true).animate(
+            {
+              width: "100px",
+              height: "100px",
+              opacity: 1,
+            },
+            "slow"
+          );
+        });
+
+        // Stop ongoing animation
+        $("#stopAnimation").click(function () {
+          $(".animate-box").stop(true);
+        });
+
+        $("#chainEffects").click(function () {
+          $(".boxx")
+            .css("border", "5px solid #fff")
+            .slideUp(500)
+            .slideDown(500)
+            .fadeOut(500)
+            .fadeIn(500)
+            .css("background-color", "#28a745")
+            .animate({ width: "150px", height: "150px" }, 500);
         });
       });
     </script>

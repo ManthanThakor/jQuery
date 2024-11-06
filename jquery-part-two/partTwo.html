@@ -3,244 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jQuery Traversing Topics</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
-    />
+    <title>jQuery Traversing Examples</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-      body {
-        background-color: #2c3e50;
-        color: white;
-        padding: 20px;
-        font-family: "Arial", sans-serif;
-      }
-      h1 {
-        margin-bottom: 30px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-      .example {
-        margin-top: 20px;
-        padding: 20px;
-        background-color: #34495e;
-        border-radius: 8px;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-      .example:hover {
-        transform: scale(1.02);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      }
-      .example h2 {
-        margin-bottom: 15px;
-        color: #f39c12;
-      }
-      .btn-primary {
-        background-color: #f39c12;
-        border-color: #e67e22;
-      }
-      .btn-primary:hover {
-        background-color: #e67e22;
-        border-color: #d35400;
-      }
-      .btn {
-        transition: background-color 0.3s, transform 0.2s;
-      }
-      .btn:active {
-        transform: scale(0.95);
-      }
-      .alert {
-        background-color: #27ae60;
-        border-color: #219653;
-        color: white;
-      }
-    </style>
   </head>
   <body>
-    <h1 class="text-center">jQuery Traversing Topics</h1>
-
-    <div class="container">
-      <div class="example">
-        <h2>jQuery Ancestors</h2>
-        <p>Selects the ancestor elements of the matched set of elements.</p>
-        <button id="ancestorsBtn" class="btn btn-primary">
-          Show Ancestors
-        </button>
-        <div id="ancestorExample">
-          <div class="parent">
-            <div class="child">Child</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Descendants</h2>
-        <p>Selects the descendant elements of the matched set of elements.</p>
-        <button id="descendantsBtn" class="btn btn-primary">
-          Show Descendants
-        </button>
-        <div id="descendantExample">
-          <div class="parent">
-            <div class="child">Child 1</div>
-            <div class="child">Child 2</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Siblings</h2>
-        <p>Selects sibling elements of the matched set of elements.</p>
-        <button id="siblingsBtn" class="btn btn-primary">Show Siblings</button>
-        <div id="siblingExample">
-          <div class="sibling">Sibling 1</div>
-          <div class="sibling">Sibling 2</div>
-          <div class="sibling">Sibling 3</div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Filtering</h2>
-        <p>
-          Selects a subset of matched elements based on a specified condition.
-        </p>
-        <button id="filteringBtn" class="btn btn-primary">
-          Show Filtered Elements
-        </button>
-        <div id="filterExample">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item active">Item 3 (Active)</div>
-          <div class="item">Item 4</div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Parents</h2>
-        <p>Selects the parent elements of the matched set of elements.</p>
-        <button id="parentsBtn" class="btn btn-primary">Show Parents</button>
-        <div id="parentExample">
-          <div class="grandparent">
-            <div class="parent">
-              <div class="child">Child</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Children</h2>
-        <p>Selects the child elements of the matched set of elements.</p>
-        <button id="childrenBtn" class="btn btn-primary">Show Children</button>
-        <div id="childrenExample">
-          <div class="parent">
-            <div class="child">Child 1</div>
-            <div class="child">Child 2</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="example">
-        <h2>jQuery Closest</h2>
-        <p>Selects the first ancestor element that matches the selector.</p>
-        <button id="closestBtn" class="btn btn-primary">
-          Show Closest Ancestor
-        </button>
-        <div id="closestExample">
-          <div class="grandparent">
-            <div class="parent">
-              <div class="child">Child</div>
-            </div>
-          </div>
-        </div>
+    <!-- Ancestors Example -->
+    <div class="ancestor">
+      <div class="parent">
+        <div class="child">Click me (Ancestor Example)</div>
       </div>
     </div>
 
-    <script>
-      $(document).ready(function () {
-        // jQuery Ancestors
-        $("#ancestorsBtn").click(function () {
-          const ancestors = $(".child").parent();
-          alert(
-            "Ancestors:\n" +
-              ancestors
-                .map((_, el) => el.tagName)
-                .get()
-                .join(", ")
-          );
-        });
+    <!-- Descendants Example -->
+    <div class="container">
+      <div class="descendant">
+        <p>I'm a paragraph inside a descendant (Descendants Example)</p>
+      </div>
+      <div class="descendant">
+        <p>I'm another paragraph inside a descendant (Descendants Example)</p>
+      </div>
+    </div>
 
-        // jQuery Descendants
-        $("#descendantsBtn").click(function () {
-          const descendants = $(".parent").find(".child");
-          alert(
-            "Descendants:\n" +
-              descendants
-                .map((_, el) => el.textContent)
-                .get()
-                .join(", ")
-          );
-        });
+    <!-- Siblings Example -->
+    <div class="box">
+      <p class="first">First paragraph (Siblings Example)</p>
+      <p class="second">Second paragraph (Siblings Example)</p>
+      <p class="third">Third paragraph (Siblings Example)</p>
+    </div>
 
-        // jQuery Siblings
-        $("#siblingsBtn").click(function () {
-          const siblings = $(".sibling:first").siblings();
-          alert(
-            "Siblings:\n" +
-              siblings
-                .map((_, el) => el.textContent)
-                .get()
-                .join(", ")
-          );
-        });
+    <!-- Filtering Example -->
+    <ul class="items">
+      <li>Item 1 (Filtering Example)</li>
+      <li>Item 2 (Filtering Example)</li>
+      <li>Item 3 (Filtering Example)</li>
+      <li>Item 4 (Filtering Example)</li>
+    </ul>
 
-        // jQuery Filtering
-        $("#filteringBtn").click(function () {
-          const filtered = $(".item").filter(".active");
-          alert(
-            "Filtered Active Elements:\n" +
-              filtered
-                .map((_, el) => el.textContent)
-                .get()
-                .join(", ")
-          );
-        });
-
-        // jQuery Parents
-        $("#parentsBtn").click(function () {
-          const parents = $(".child").parent();
-          alert(
-            "Parent:\n" +
-              parents
-                .map((_, el) => el.tagName)
-                .get()
-                .join(", ")
-          );
-        });
-
-        // jQuery Children
-        $("#childrenBtn").click(function () {
-          const children = $(".parent").children(".child");
-          alert(
-            "Children:\n" +
-              children
-                .map((_, el) => el.textContent)
-                .get()
-                .join(", ")
-          );
-        });
-
-        // jQuery Closest
-        $("#closestBtn").click(function () {
-          const closest = $(".child").closest(".grandparent");
-          alert(
-            "Closest Ancestor:\n" +
-              closest
-                .map((_, el) => el.tagName)
-                .get()
-                .join(", ")
-          );
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

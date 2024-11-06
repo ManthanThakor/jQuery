@@ -121,3 +121,20 @@ button:hover {
   transition: all 0.3s ease;
   border-radius: 4px; /* Rounded corners */
 }
+
+.Event-target {
+  background: linear-gradient(
+    45deg,
+    rgba(219, 219, 219, 0.705),
+    rgba(6, 225, 170, 0.644),
+    rgba(211, 4, 14, 0.521)
+  );
+  color: #0c0c0c;
+  padding: 10px;
+  font-weight: 600;
+  margin: 10px;
+  border-radius: 2ch;
+  box-shadow: rgba(226, 7, 7, 0.25) 0px 54px 55px,
+    rgba(250, 0, 0, 0.12) 0px -12px 30px, rgba(255, 0, 0, 0.12) 0px 4px 6px,
+    rgba(255, 0, 0, 0.17) 0px 12px 13px, rgba(255, 0, 0, 0.09) 0px -3px 5px;
+}

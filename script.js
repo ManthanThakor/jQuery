@@ -15,7 +15,7 @@ $(document).ready(function () {
   });
 
   $("button").contextmenu(function (e) {
-    e.preventDefault(); // Prevent default context menu
+    e.preventDefault();
     $("#test").hide();
   });
 
@@ -55,6 +55,10 @@ $(document).ready(function () {
     self.on("mouseleave", () => self.css("background-color", "white"));
   });
 
+  $("#inputField").on("keydown", function (event) {
+    $("#output").text(event.type + ": " + event.which);
+  });
+
   $("#hide").click(function () {
     $(".showOrHide").hide();
   });
@@ -76,7 +80,7 @@ $(document).ready(function () {
   });
 
   $("#prependButton").click(function () {
-    $("#prependParagraph").prepend("<strong>Prepended Text!</strong> ");
+    $("#appendParagraph").prepend("<strong>Prepended Text!</strong> ");
   });
 
   $("#afterButton").click(function () {
@@ -148,6 +152,11 @@ $(document).ready(function () {
 
   $("#chainEffects").click(function () {
     $(".boxx").fadeOut(1000).fadeIn(1000).slideUp(500).slideDown(500);
+  });
+
+  //Event-target
+  $(".Event-target").on("click", function (event) {
+    $("#ans").html("Target Element : " + event.target.textContent);
   });
 });
 
